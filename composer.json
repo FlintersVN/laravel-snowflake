@@ -9,7 +9,14 @@
   },
   "autoload": {
     "psr-4": {
-      "Septech\\Snowflake\\": "."
+      "Septech\\Snowflake\\": ""
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Septech\\Snowflake\\SnowflakeServiceProvider"
+      ]
     }
   }
 }
