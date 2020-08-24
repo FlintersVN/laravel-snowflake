@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://gitlab.devsep.com/septech-php/septech-laravel/snowflake/-/compare/v1.0.0...master)
 
-## [v1.0.1 - 2020-08-21](https://gitlab.devsep.com/septech-php/septech-laravel/snowflake/-/compare/v1.0.0...v1.0.1)
+## [v1.0.1 - 2020-08-24](https://gitlab.devsep.com/septech-php/septech-laravel/snowflake/-/compare/v1.0.0...v1.0.1)
 ### Added
 - Add facades
 
