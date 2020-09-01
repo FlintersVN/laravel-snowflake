@@ -19,4 +19,9 @@ class Snowflake extends Facade
     {
         return static::getFacadeRoot()->id();
     }
+
+    public static function routes()
+    {
+        require_once __DIR__ . '/../routes.php';
+    }
 }

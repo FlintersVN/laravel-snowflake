@@ -32,4 +32,6 @@ return [
     'datacenter_id' => env('SNOWFLAKE_DATACENTER_ID', 1),
 
     'cache_store' => null,
+
+    'sever_to_server_token' => env('SNOWFLAKE_HTTP_TOKEN')
 ];

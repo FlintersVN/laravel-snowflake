@@ -7,6 +7,7 @@ use Godruoyi\Snowflake\LaravelSequenceResolver;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Septech\Snowflake\Console\Commands\WorkerAllocateCommand;
+use Septech\Snowflake\Console\Commands\WorkerTokenCommand;
 
 class SnowflakeServiceProvider extends ServiceProvider
 {
@@ -26,7 +27,7 @@ class SnowflakeServiceProvider extends ServiceProvider
         ], 'snowflake');
 
         // Register commands
-        $this->commands([WorkerAllocateCommand::class]);
+        $this->commands([WorkerAllocateCommand::class, WorkerTokenCommand::class]);
     }
 
     protected function registerSnowflakeInstance()

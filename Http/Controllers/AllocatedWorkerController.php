@@ -2,7 +2,6 @@
 
 namespace Septech\Snowflake\Http\Controllers;
 
-use Septech\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Septech\Snowflake\AllocatedWorker;
@@ -19,9 +18,12 @@ class AllocatedWorkerController
 
         $instanceId = AllocatedWorker::allocateFor($data['machine_id']);
 
-        return Response::success([
-            'worker_id' => AllocatedWorker::workerId($instanceId),
-            'data_center_id' => AllocatedWorker::dataCenterId($instanceId),
+        return response()->json([
+            'ok' => true,
+            'data' => [
+                'worker_id' => AllocatedWorker::workerId($instanceId),
+                'data_center_id' => AllocatedWorker::dataCenterId($instanceId),
+            ],
         ]);
     }
 
@@ -33,6 +35,8 @@ class AllocatedWorkerController
 
         AllocatedWorker::release($data['machine_id']);
 
-        return Response::ok();
+        return response()->json([
+            'ok' => true
+        ]);
     }
 }

@@ -1,9 +1,18 @@
 {
   "name": "septech-laravel/snowflake",
   "description": "Snowflake for laravel",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Do Anh Tuan",
+      "email": "tuan_da@septeni-technology.jp"
+    }
+  ],
+  "keywords": ["laravel", "snowflake"],
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
   "require": {
-    "illuminate/database": "^v7.0",
-    "illuminate/console": "^v7.0",
     "illuminate/support": "^v7.0",
     "godruoyi/php-snowflake": "^1.0"
   },
@@ -12,11 +21,24 @@
       "Septech\\Snowflake\\": ""
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests"
+    }
+  },
   "extra": {
     "laravel": {
       "providers": [
         "Septech\\Snowflake\\SnowflakeServiceProvider"
       ]
     }
+  },
+  "suggest": {
+    "septech-laravel/http": "Required to use the api",
+    "illumiate/database": "Required to use worker:allocate command",
+    "illumiate/console": "Required to use worker:allocate command"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.3"
   }
 }

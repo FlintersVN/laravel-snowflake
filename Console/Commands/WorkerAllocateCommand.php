@@ -32,32 +32,23 @@ class WorkerAllocateCommand extends Command
 
         $instanceId = AllocatedWorker::allocateFor($machineId);
 
-        if (! $this->hasEnvironment('SNOWFLAKE_WORKER_ID')) {
+        $env = new Env($this->laravel->environmentFilePath());
+        
+        if (! $env->has('SNOWFLAKE_WORKER_ID')) {
             $workerId = AllocatedWorker::workerId($instanceId);
 
             $this->info("Assigning worker:" . json_encode(["machine_id" => $machineId, 'worker_id' => $workerId]));
-            $this->putEnvironment('SNOWFLAKE_WORKER_ID', $workerId);
+            $env->write('SNOWFLAKE_WORKER_ID', $workerId);
         }
 
-        if (! $this->hasEnvironment('SNOWFLAKE_DATACENTER_ID')) {
+        if (! $env->has('SNOWFLAKE_DATACENTER_ID')) {
             $dataCenterId = AllocatedWorker::dataCenterId($instanceId);
 
             $this->info("Assigning data center:" . json_encode(["machine_id" => $machineId, 'data_center_id' => $dataCenterId]));
-            $this->putEnvironment('SNOWFLAKE_DATACENTER_ID', $dataCenterId);
+            $env->write('SNOWFLAKE_DATACENTER_ID', $dataCenterId);
         }
 
         $this->info('OK');
-    }
-
-    protected function putEnvironment($key, $value)
-    {
-        $envPath = app()->environmentFilePath();
-        file_put_contents($envPath, sprintf("%s=\"%s\"\n", $key, $value), FILE_APPEND);
-    }
-
-    protected function hasEnvironment($key)
-    {
-        return env($key, $this) !== $this;
     }
 
     protected function getInstanceId()
