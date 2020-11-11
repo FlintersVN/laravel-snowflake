@@ -43,12 +43,18 @@ class SnowflakeServiceProvider extends ServiceProvider
 
             $instance->setStartTimeStamp(strtotime($config->get('snowflake.epoch')));
 
-            if (! $app->runningUnitTests() && ! $app->isLocal()) {
+
+            if (! $app->runningUnitTests() && ! $app->isLocal() && $this->hasRedis()) {
                 $cacheStore = $app->make('cache')->store($config->get('snowflake.cache_store'));
                 $instance->setSequenceResolver(new LaravelSequenceResolver($cacheStore));
             }
 
             return $instance;
         });
+    }
+
+    protected function hasRedis()
+    {
+        return extension_loaded('redis');
     }
 }
